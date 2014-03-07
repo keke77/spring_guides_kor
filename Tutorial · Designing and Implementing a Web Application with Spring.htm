@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<!-- saved from url=(0038)http://spring.io/guides/tutorials/web/ -->
+<html data-mobile-support="" data-newsletter-subscription="" data-search="" data-clipboard-buttons="" data-code-sidebar=""><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>튜토리얼 · 스프링으로 웹 애플리케이션 디자인 및 구현하기</title>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1, minimum-scale=1, user-scalable=no" id="Viewport" name="viewport">
+<link rel="shortcut icon" type="image/x-icon" href="http://spring.io/img/favicon.png">
+<link href="./Tutorial · Designing and Implementing a Web Application with Spring_files/css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="./Tutorial · Designing and Implementing a Web Application with Spring_files/main.css">
+<script type="text/javascript" async="" src="./Tutorial · Designing and Implementing a Web Application with Spring_files/inpage_linkid.js" id="undefined"></script><script type="text/javascript" async="" src="./Tutorial · Designing and Implementing a Web Application with Spring_files/ga.js"></script><script>
+        var baseUrl = '/';
+  </script>
+<script async="" src="./Tutorial · Designing and Implementing a Web Application with Spring_files/curl.js" data-curl-run=""></script>
+<meta content="7qGntFPD9lWAVCtUu5U77v4l68PsTHf6xpzgjQv2j2M" name="google-site-verification">
+<script>
+    //
+      var _gaq = _gaq || [];
+      var pluginUrl =
+       '//www.google-analytics.com/plugins/ga/inpage_linkid.js';
+      _gaq.push(
+        ['_require', 'inpage_linkid', pluginUrl],
+        ['_setAccount', 'UA-2728886-20'],
+        ['_trackPageview'],
+        ['b._require', 'inpage_linkid', pluginUrl],
+        ['b._setAccount', 'UA-2728886-19'],
+        ['b._trackPageview']
+      );
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+  </script>
+<link rel="stylesheet" type="text/css" href="./Tutorial · Designing and Implementing a Web Application with Spring_files/code-sidebar.css">
+<script type="text/javascript" charset="utf-8" async="" src="./Tutorial · Designing and Implementing a Web Application with Spring_files/run.js"></script><script type="text/javascript" charset="utf-8" src="./Tutorial · Designing and Implementing a Web Application with Spring_files/jquery-migrate-1.2.1.js"></script><script type="text/javascript" charset="utf-8" src="./Tutorial · Designing and Implementing a Web Application with Spring_files/munchkin.js"></script></head>
+<body>
+<script type="text/javascript">
+    // Work around Google font rendering issues in webkit browsers on Windows 7
+    if (navigator.userAgent.indexOf("NT 6.1") != -1) {
+      document.body.style.WebkitTextStroke = "0.5px";
+    }
+  </script>
+<div class="viewport">
+<header class="navbar header--navbar desktop-only">
+<div class="navbar-inner">
+<div class="container-fluid">
+<div class="spring-logo--container">
+<a class="spring-logo" href="http://spring.io/"><span></span></a>
+</div>
+<ul class="nav pull-right">
+<li class="navbar-link">
+<a href="http://spring.io/docs">Docs</a>
+</li>
+<li class="navbar-link active">
+<a href="http://spring.io/guides">Guides</a>
+</li>
+<li class="navbar-link">
+<a href="http://spring.io/projects">Projects</a>
+</li>
+<li class="navbar-link">
+<a href="http://spring.io/blog">Blog</a>
+</li>
+<li class="navbar-link">
+<a href="http://forum.spring.io/">Forum</a>
+</li>
+<li class="navbar-link nav-search">
+<i class="icon-search navbar-search--icon js-search-input-open"></i>
+<div class="search-input-close js-search-input-close">x</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="search-dropdown--container js-search-dropdown">
+<div class="container-fluid">
+<div class="search-form--container">
+<form action="http://spring.io/search" class="form-inline form-search" method="get">
+<input class="search-query search-form--form js-search-input" name="q" placeholder="Search for documentation, guides, and posts..." type="text" value="">
+<button class="search-form--submit" type="submit"><i class="icon-search"></i></button>
+</form>
+</div>
+</div>
+</div>
+</header>
+<div>
+<div class="mobile-navigation--wrapper mobile-only">
+<div class="navigation-drawer--container">
+<div class="mobile-search--container">
+<form action="http://spring.io/search" class="form-inline form-search" method="get">
+<button class="search-form--submit" type="submit"><i class="icon-search"></i></button>
+<input class="search-query search-form--form js-search-input" name="q" placeholder="Search..." type="text" value="">
+</form>
+</div>
+<div class="navigation-item-list">
+<div class="navbar-link">
+<a href="http://spring.io/">
+Home
+<i class="icon-chevron-right pull-right"></i>
+</a>
+</div>
+ 
+<div class="navbar-link active">
+<a href="http://spring.io/guides">
+Guides
+<i class="icon-chevron-right pull-right"></i>
+</a>
+</div>
+<div class="navbar-link">
+<a href="http://spring.io/projects">
+Projects
+<i class="icon-chevron-right pull-right"></i>
+</a>
+</div>
+<div class="navbar-link">
+<a href="http://spring.io/blog">
+Blog
+<i class="icon-chevron-right pull-right"></i>
+</a>
+</div>
+</div>
+</div>
+<div class="mobile-nav">
+<div class="nav-icon js-open-nav-drawer">
+<i class="icon-reorder"></i>
+</div>
+<div class="header-center-icon">
+<a href="http://spring.io/">
+<div class="icon icon-spring-logo-mobile"></div>
+</a>
+</div>
+</div>
+</div>
+</div>
+<div class="header--container"></div>
+<div class="container-fluid"></div>
+<div></div>
+<div class="body--container container-fluid ">
+<div class="main-body--wrapper">
+<div class="row-fluid">
+<div class="span8 tutorial-text mobile-left-pane ">
+<div class="content--title desktop-only">
+Tutorial
+</div>
+<article class="content--container">
+<h1 class="title">스프링으로 웹 애플리케이션 디자인 및 구현하기</h1>
+<div class="article-body"><div class="announce instapaper_body md" data-path="README.md" id="file"><article class="markdown-body entry-content" itemprop="mainContentOfPage"><p>이 튜토리얼에서는 스프링을 이용하여 상업용 규모의 웹 애플리케이션을 제작하는 방법을 배우게 될 것입니다.</p>
+<h2>
+<a name="spring-and-the-web" class="anchor" href="http://spring.io/guides/tutorials/web/#spring-and-the-web"><span class="octicon octicon-link"></span></a>스프링과 웹</h2>
+<p>웹은 쇼핑에서부터 가장 가까운 ATM을 찾을 수 있게 해주는 등, 우리 삶의 중요한 일부가 되었습니다. HTTP를 통해 HTML을 전송하는, 웹 애플리케이션이란 서버 소프트웨어는 웹을 구현합니다.</p>
+<p>스프링은 작은 내부용 애플리케이션부터 수백만 유저의 수천의 동시 요청을 처리하는 웹 애플리케이션을 빌드할 수 있도록 도와줍니다.</p>
+<p>스프링을 사용해 웹 애플리케이션을 만들기 시작했거나 혹은 단순히 스프링 기반의 웹 애플리케이션이 어떤 구조인지 알고 싶거나, 이 문서가 바로 그 대답이 될 것입니다.</p>
+<h2>
+<a name="what-youll-build" class="anchor" href="http://spring.io/guides/tutorials/web/#what-youll-build"><span class="octicon octicon-link"></span></a>우리가 만들게 될 것</h2>
+<p>"맛있는 국수 가게"는 세계로 발돋움하고 있습니다. 이제 웹 애플리케이션을 만들어 "맛있는 국수 가게"의 최신 메뉴를 제공하고 웹을 통하여 주문과 처리 상태의 진행도를 보여주고자 합니다.</p>
+<p>우리는 "맛있는 국수 가게"의 기존 어플리케이션을 웹 컴포넌트를 붙여 확장하고, 이를 통해 메뉴를 보여주거나 주문을 하거나 주문 상태를 확인할 수 있도록 할 것입니다.</p>
+<p><a href="./Tutorial · Designing and Implementing a Web Application with Spring_files/yummynoodle.jpg" target="_blank"><img src="./Tutorial · Designing and Implementing a Web Application with Spring_files/yummynoodle.jpg" alt="Yummy Noodle Bar" style="max-width:100%;"></a></p>
+<h2>
+<a name="what-youll-need" class="anchor" href="http://spring.io/guides/tutorials/web/#what-youll-need"><span class="octicon octicon-link"></span></a>준비해야 할 것</h2>
+<ul>
+<li>각 섹션마다 30분 정도의 시간이 필요합니다. 일주일 정도 점심시간을 활용한다면 편하게 코스를 끝낼 수 있습니다.(주말에 몰아서 끝낼수도 있구요!)</li>
+<li>튜토리얼 코드 복사본(<a href="http://spring.io/understanding/Git">git</a> 또는<a href="https://github.com/spring-guides/tut-web/archive/master.zip">Zip파일 다운로드</a>)</li>
+<li>각자 쓰는 IDE. 스프링은 무료 툴인<a href="http://spring.io/tools/sts/all">Spring Tool Suite</a>를 사용하는 것을 추천합니다.</li>
+</ul><h3>
+<a name="downloading-and-running-the-code" class="anchor" href="http://spring.io/guides/tutorials/web/#downloading-and-running-the-code"><span class="octicon octicon-link"></span></a>코드 다운로드와 실행하기</h3>
+<p>코드 베이스를 다운로드 받았다면, 이 튜토리얼의 섹션 별로 번호가 붙어서 폴더가 분리되어 있는 것을 볼 수 있습니다. 또한 There are also several code drops: an <strong>initial</strong> one at the root, and a separate <strong>complete</strong> code drop for each section.</p>
+<p>The <strong>initial</strong> code set contains:</p>
+<ul>
+<li>a project layout</li>
+<li>the core domain &amp; event classes this tutorial starts off creating (the 'Yummy Noodle Bar Application', above)</li>
+<li>some basic unit tests for some of those classes</li>
+</ul><p>The <strong>complete</strong> code set in each section includes the initial code base plus the code developed up to that point in the tutorial.</p>
+<p>You can choose to start with the <strong>initial</strong> code set, copy-and-paste your way through the guide, and then run things at the end. Or you can start with the <strong>complete</strong> code set for a given section, open each file, and read the source side-by-side as you walk through the tutorial.</p>
+<p>While there are many build systems, this tutorial is built using <a href="http://spring.io/guides/gs/gradle">Gradle</a> and includes the Gradle Wrapper, so you don't have to install anything to run the code.</p>
+<p>For example, if you want to check out the initial code set:</p>
+<div class="highlight highlight-sh"><button class="copy-button snippet" data-clipboard-text="$ git clone https://github.com/spring-guides/tut-web.git
+$ cd tut-web/initial
+$ ./gradlew clean test
+"></button><pre><span class="nv">$ </span>git clone https://github.com/spring-guides/tut-web.git
+<span class="nv">$ </span><span class="nb">cd </span>tut-web/initial
+<span class="nv">$ </span>./gradlew clean <span class="nb">test</span>
+</pre></div>
+<p>From there, you can inspect <code>build/reports/tests</code> and see all the test results.</p>
+<p>If you want to switch to section 6, the last part, and run the web application and it's tests do this:</p>
+<div class="highlight highlight-sh"><button class="copy-button snippet" data-clipboard-text="$ cd ../6/complete
+$ ./gradlew tomcatRunWar
+"></button><pre><span class="nv">$ </span><span class="nb">cd</span> ../6/complete
+<span class="nv">$ </span>./gradlew tomcatRunWar
+</pre></div>
+<p>In a separate console:</p>
+<div class="highlight highlight-sh"><button class="copy-button snippet" data-clipboard-text="$ ./gradlew test
+"></button><pre><span class="nv">$ </span>./gradlew <span class="nb">test</span>
+</pre></div>
+<p>Some of the sections don't require running the web application to execute the tests.</p>
+<h2>
+<a name="yummy-noodle-bar-application-architecture-and-the-core-domain" class="anchor" href="http://spring.io/guides/tutorials/web/#yummy-noodle-bar-application-architecture-and-the-core-domain"><span class="octicon octicon-link"></span></a>Yummy Noodle Bar application architecture and the Core domain</h2>
+<p>The current architecture of the application is shown in the following "Life Preserver" diagram:</p>
+<p><a href="./Tutorial · Designing and Implementing a Web Application with Spring_files/life-preserver-1.png" target="_blank"><img src="./Tutorial · Designing and Implementing a Web Application with Spring_files/life-preserver-1.png" alt="Life Preserver showing Core packages" style="max-width:100%;"></a></p>
+<p>The Life Preserver diagram is a tool for building applications that following the principles of the <a href="http://alistair.cockburn.us/Hexagonal+architecture">Hexagonal Architecture, sometimes referred to as 'Ports and Adapters' originally characterised by Alistair Cockburn</a>. The Life Preserver diagram shows your application's core internal domains along with the surrounding 'integration' domains that map directly to the packages and components that you'll be working within and upon throughout this tutorial, so it's a great way to understand where things are.</p>
+<p>Open the <strong>initial</strong> project and you'll see that the life preserver diagram maps to the different packages under src/main/java/com/yummynoodlebar</p>
+<p>Under the core application's top-level packages, that is, com.yummynoodlebar.core, here's what the packages contain:</p>
+<ul>
+<li><p><strong>domain</strong>. Components that cleanly capture the application's Core domain concepts. These classes are a manifestation of the <a href="http://martinfowler.com/bliki/UbiquitousLanguage.html">ubiquitous language</a> of the Core domain.</p></li>
+<li><p><strong>service</strong>. Components that handle the actions that can be performed when an event is received.</p></li>
+</ul><p>Take a moment to familiarize yourself with the components in each package. The tests for the core domain components are available in the src/test area in the <code>initial</code> project. They will give you an idea of how these components will be used.</p>
+<h2>
+<a name="web-domain" class="anchor" href="http://spring.io/guides/tutorials/web/#web-domain"><span class="octicon octicon-link"></span></a>Web domain</h2>
+<p>A web front end integrates your application with web browsers and their users. As such, the web front end lives in its own integration domain on the periphery of your application's core, as show in the following update to your life preserver.</p>
+<p><a href="./Tutorial · Designing and Implementing a Web Application with Spring_files/life-preserver-2.png" target="_blank"><img src="./Tutorial · Designing and Implementing a Web Application with Spring_files/life-preserver-2.png" alt="Life Preserver showing Web Domain" style="max-width:100%;"></a></p>
+<p>Given the integration between your application and the outside world, consider the following design and implementation constraints:</p>
+<ul>
+<li>The user experience (UX) is your focus; the core application structure should not influence the design of the web front end.</li>
+<li>The components that make up your Web domain need to evolve at a rate that is appropriate for the many consumers that rely on your services.</li>
+<li>Your Web components should not contain any core logic for your application, but they will collaborate with other components in the Core domains of your application in order to orchestrate the necessary functionality for the service interface.</li>
+</ul><h2>
+<a name="tutorial-roadmap" class="anchor" href="http://spring.io/guides/tutorials/web/#tutorial-roadmap"><span class="octicon octicon-link"></span></a>Tutorial Roadmap</h2>
+<ul>
+<li><a href="http://spring.io/guides/tutorials/web/1/">Step 1: Modelling the Core and Web Domains</a></li>
+<li><a href="http://spring.io/guides/tutorials/web/2/">Step 2: Implementing URLs and returning data</a></li>
+<li><a href="http://spring.io/guides/tutorials/web/3/">Step 3: Configuring a basic application</a></li>
+<li><a href="http://spring.io/guides/tutorials/web/4/">Step 4: Creating rich HTML views using Thymeleaf</a></li>
+<li><a href="http://spring.io/guides/tutorials/web/5/">Step 5: Accepting user submitted data</a></li>
+<li><a href="http://spring.io/guides/tutorials/web/6/">Step 6: Securing the Web Application</a></li>
+<li><a href="http://spring.io/guides/tutorials/web/8/">Recap and What's Next?</a></li>
+</ul></article></div></div>
+</article>
+</div>
+<aside class="span4 content-right-pane--container mobile-left-pane " id="sidebar">
+<div class="right-pane-widget--container desktop-only">
+<div class="github-actions https">
+<h2>Get the Code</h2>
+<div class="btn-group">
+<button class="btn" data-protocol="https">HTTPS</button>
+<button class="btn" data-protocol="ssh">SSH</button>
+<button class="btn" data-protocol="subversion">Subversion</button>
+</div>
+<div class="clone-url https">
+<input id="clone-url-https" readonly="readonly" type="text" value="https://github.com/spring-guides/tut-web.git">
+<button class="copy-button github" data-toggle="tooltip" data-clipboard-text="https://github.com/spring-guides/tut-web.git"></button>
+</div>
+<div class="clone-url ssh">
+<input id="clone-url-ssh" readonly="readonly" type="text" value="git@github.com:spring-guides/tut-web.git">
+<button class="copy-button github" data-toggle="tooltip" data-clipboard-text="git@github.com:spring-guides/tut-web.git"></button>
+</div>
+<div class="clone-url subversion">
+<input id="clone-url-subversion" readonly="readonly" type="text" value="https://github.com/spring-guides/tut-web">
+<button class="copy-button github" data-toggle="tooltip" data-clipboard-text="https://github.com/spring-guides/tut-web"></button>
+</div>
+<a class="github_download btn btn-black uppercase" href="https://github.com/spring-guides/tut-web/archive/master.zip">Download ZIP</a>
+<div class="go-to-repo--container">
+<a href="https://github.com/spring-guides/tut-web">
+<i class="icon-github"></i>
+Go To Repo
+</a>
+</div>
+</div>
+</div>
+<div class="right-pane-widget--container">
+<div class="related_resources"><div class="announce instapaper_body md" data-path="SIDEBAR.md" id="file"><article class="markdown-body entry-content" itemprop="mainContentOfPage"><h2>
+<a name="related-resources" class="anchor" href="http://spring.io/guides/tutorials/web/#related-resources"><span class="octicon octicon-link"></span></a>Related Resources</h2>
+<h3>
+<a name="getting-started-guides" class="anchor" href="http://spring.io/guides/tutorials/web/#getting-started-guides"><span class="octicon octicon-link"></span></a>Getting Started guides</h3>
+<ul>
+<li><a href="http://spring.io/guides/gs/consuming-rest/">Consuming a RESTful Web Service</a></li>
+<li><a href="http://spring.io/guides/gs/rest-hateoas/">Building a Hypermedia-Driven RESTful Web Service</a></li>
+<li><a href="http://spring.io/guides/gs/consuming-rest-android/">Consuming RESTful Web Services with Spring for Android</a></li>
+<li><a href="http://spring.io/guides/gs/consuming-rest-xml-android/">Consuming XML from a RESTful Web Service with Spring for Android</a></li>
+<li><a href="http://spring.io/guides/gs/actuator-service/">Building a RESTful Web Service with Spring Boot Actuator</a></li>
+<li><a href="http://spring.io/guides/gs/securing-web">Securing a Web Application</a></li>
+<li><a href="http://spring.io/guides/gs/authenticating-ldap">Authenticating a User with LDAP</a></li>
+</ul><h3>
+<a name="tutorials" class="anchor" href="http://spring.io/guides/tutorials/web/#tutorials"><span class="octicon octicon-link"></span></a>Tutorials</h3>
+<ul>
+<li><a href="http://spring.io/guides/tutorials/rest">Designing and Implementing RESTful Web Services with Spring</a></li>
+<li><a href="http://spring.io/guides/tutorials/data">Data Access with Spring</a></li>
+</ul><h3>
+<a name="concepts-and-technologies" class="anchor" href="http://spring.io/guides/tutorials/web/#concepts-and-technologies"><span class="octicon octicon-link"></span></a>Concepts and technologies</h3>
+<ul>
+<li><a href="http://spring.io/understanding/REST">REST</a></li>
+<li><a href="http://spring.io/understanding/JSON">JSON</a></li>
+<li><a href="http://spring.io/understanding/view-templates">View templates</a></li>
+</ul></article></div></div>
+</div>
+</aside>
+</div>
+</div>
+</div>
+<footer class="footer">
+<div class="container-fluid">
+<div class="row-fluid">
+<div class="span8">
+<div class="navbar">
+<div class="container">
+<ul class="nav">
+<li><a href="http://spring.io/team">Team</a></li>
+<li><a href="http://spring.io/services">Services</a></li>
+<li><a href="http://spring.io/tools">Tools</a></li>
+</ul>
+</div>
+</div>
+© <span>2014</span> <a href="http://gopivotal.com/">Pivotal Software</a>, Inc. All Rights Reserved.
+<a href="http://www.gopivotal.com/terms-of-use">Terms of Use</a> and
+<a href="http://www.gopivotal.com/privacy-policy">Privacy</a>
+</div>
+<div class="span4 footer-newsletter--wrapper pull-right">
+<div class="footer-newsletter--container">
+    <label>
+        Subscribe to our newsletter
+    </label>
+    <iframe src="./Tutorial · Designing and Implementing a Web Application with Spring_files/OSS_Website_Spring_SpringNewsletterSubscriptionEmailOnly.htm" frameborder="0" scrolling="no" height="42px" width="324px" style="border:none"></iframe>
+</div></div>
+</div>
+</div>
+</footer>
+<div id="scrim"></div>
+</div>
+<div id="global-zeroclipboard-html-bridge" class="global-zeroclipboard-container" data-clipboard-ready="false" style="position: absolute; left: -9999px; top: -9999px; width: 15px; height: 15px; z-index: 9999;" data-original-title="" title="">      <object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" id="global-zeroclipboard-flash-bridge" width="100%" height="100%">         <param name="movie" value="/lib/zeroclipboard/ZeroClipboard.swf?nocache=1394196454507">         <param name="allowScriptAccess" value="sameDomain">         <param name="scale" value="exactfit">         <param name="loop" value="false">         <param name="menu" value="false">         <param name="quality" value="best">         <param name="bgcolor" value="#ffffff">         <param name="wmode" value="transparent">         <param name="flashvars" value="">         <embed src="/lib/zeroclipboard/ZeroClipboard.swf?nocache=1394196454507" loop="false" menu="false" quality="best" bgcolor="#ffffff" width="100%" height="100%" name="global-zeroclipboard-flash-bridge" allowscriptaccess="always" allowfullscreen="false" type="application/x-shockwave-flash" wmode="transparent" pluginspage="http://www.macromedia.com/go/getflashplayer" flashvars="" scale="exactfit">                </object></div></body></html>
